@@ -168,7 +168,7 @@ client.on("message", async message => {
 
 client.on("message", message => {
   
-  if (pixelbot.content.startsWith(prefix + "user")) {
+  if (message.content.startsWith(prefix + "user")) {
     
     if (message.author.bot) return;
     if (!message.guild)
@@ -182,7 +182,7 @@ client.on("message", message => {
       var roles = message.member.roles
         .map(roles => `**__${roles.name}__ |**`)
         .join(` `);
-      let pixeluser = new Discord.RichEmbed() 
+      let user = new Discord.RichEmbed() 
         .setColor("black")
         .setTitle(" :beginner: :heartpulse:   | User Info") 
         .setAuthor(message.author.username, message.author.avatarURL)
@@ -191,18 +191,18 @@ client.on("message", message => {
         .addField("**✽ ID :** ", message.author.id, true) 
         .addField(
           "**✽ Joined At :**   ",
-          moment(pixelbot.joinedAt).format("D/M/YYYY h:mm a "),
+          moment(message.joinedAt).format("D/M/YYYY h:mm a "),
           true
         )
         .addField(
           "**✽ Created At :**    ",
-          moment(pixelbot.author.createdAt).format("D/M/YYYY h:mm a "),
+          moment(message.author.createdAt).format("D/M/YYYY h:mm a "),
           true
         )
         .addField("**✽ Total invites :**    ", inviteCount, true)
-        .setTimestamp(); // itzZa1D - Codes Team.
+        .setTimestamp(); 
 
-      pixelbot.channel.sendEmbed(pixeluser).then(c => {}); // itzZa1D - Codes Team.
+      message.channel.sendEmbed(user).then(c => {}); 
     });
   }
 });
