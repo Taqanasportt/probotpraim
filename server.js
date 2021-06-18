@@ -1,7 +1,3 @@
-///هذا البوت الاصدار الثاني من بوت السيستم تحت ادارة اسامة خالد :
-///رابط المقطع: https://youtu.be/6B9nrQp02Rk
-//// البوت تجميع ، وليس عمل من الصفر والغاية بالاخير افادة الناس وجميع الحقوق محفوظة وموجودة
-///اخر تحديث 11\5\2020
 require("events").EventEmitter.defaultMaxListeners = 200;
 const http = require("http");
 const express = require("express");
@@ -14,7 +10,7 @@ setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
 
-////بكجات
+
 const { Client, RichEmbed } = require("discord.js");
 var { Util } = require("discord.js");
 const { prefix, devs } = require("./config");
@@ -49,13 +45,13 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-//كود تغيير الحالة
+
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
   console.log(client.guilds.map(c => `${c.name} : ${c.me.hasPermission(8)}`));
   client.user.setStatus("online");
 
-  client.user.setActivity(`${prefix}help`, { type: "WATCHING" });
+  client.user.setActivity(`${prefix}help`, { type: "PLAYING" });
 });
 
 client.on("message", message => {
@@ -70,7 +66,7 @@ client.on("message", message => {
   if (command == "say") {
     if (!message.member.hasPermission("ADMINISTRATOR"))
       return message.channel.send(
-        "**ADMINISTRATOR ليس لديك صلاحيات :rolling_eyes:**"
+        "**ADMINISTRATOR You don't have powers. :rolling_eyes:**"
       );
 
     message.channel.send("`#` " + args.join("  "));
@@ -78,7 +74,7 @@ client.on("message", message => {
   }
 });
 
-////كود تيكت
+
 client.on("message", message => {
   if (message.content.startsWith(prefix + "new")) {
     const reason = message.content
@@ -86,7 +82,7 @@ client.on("message", message => {
       .slice(1)
       .join(" ");
     if (!message.guild.roles.exists(gg => gg.name === "Support Team"))
-      return message.channel.send(`لازم تسوي رتبة اسمها \`Support Team\`.`);
+      return message.channel.send(`You have to make a rank called \`Support Team\`.`);
     if (
       message.guild.channels.filter(
         Channel =>
@@ -128,7 +124,7 @@ client.on("message", message => {
       .catch(console.error);
   } else if (message.content.startsWith(prefix + "closet")) {
     if (!message.guild.roles.exists(gg => gg.name === "Support Team"))
-      return message.channel.send(` لازم تسوي رتبة اسمها \`Support Team\`.`);
+      return message.channel.send(` You have to make a rank called \`Support Team\`.`);
     if (!message.channel.name.startsWith("ticket-"))
       return message.channel.send("This isn't a ticket channel!");
     if (
@@ -170,30 +166,29 @@ client.on("message", async message => {
   }
 });
 
-//// كود معلومات الشخص او اليوزر
-client.on("message", pixelbot => {
-  // itzZa1D - Codes Team.
+client.on("message", message => {
+  
   if (pixelbot.content.startsWith(prefix + "user")) {
-    // itzZa1D - Codes Team.
-    if (pixelbot.author.bot) return;
-    if (!pixelbot.guild)
-      return pixelbot.reply("**:x: - This Command is only done on Servers**");
-    pixelbot.guild.fetchInvites().then(invites => {
-      // itzZa1D - Codes Team.
+    
+    if (message.author.bot) return;
+    if (!message.guild)
+      return message.reply("**:x: - This Command is only done on Servers**");
+    message.guild.fetchInvites().then(invites => {
+      
       let personalInvites = invites.filter(
-        i => i.inviter.id === pixelbot.author.id
+        i => i.inviter.id === message.author.id
       );
       let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-      var roles = pixelbot.member.roles
+      var roles = message.member.roles
         .map(roles => `**__${roles.name}__ |**`)
         .join(` `);
-      let pixeluser = new Discord.RichEmbed() // itzZa1D - Codes Team.
-        .setColor("#00000")
-        .setTitle(" :beginner: :heartpulse:   | Use  r Info") // itzZa1D - Codes Team.
-        .setAuthor(pixelbot.author.username, pixelbot.author.avatarURL)
-        .addField("**✽ Name :**   ", pixelbot.author.username, true)
-        .addField("**✽ Tag :**   ", pixelbot.author.discriminator, true)
-        .addField("**✽ ID :** ", pixelbot.author.id, true) // itzZa1D - Codes Team.
+      let pixeluser = new Discord.RichEmbed() 
+        .setColor("black")
+        .setTitle(" :beginner: :heartpulse:   | User Info") 
+        .setAuthor(message.author.username, message.author.avatarURL)
+        .addField("**✽ Name :**   ", message.author.username, true)
+        .addField("**✽ Tag :**   ", message.author.discriminator, true)
+        .addField("**✽ ID :** ", message.author.id, true) 
         .addField(
           "**✽ Joined At :**   ",
           moment(pixelbot.joinedAt).format("D/M/YYYY h:mm a "),
@@ -210,9 +205,9 @@ client.on("message", pixelbot => {
       pixelbot.channel.sendEmbed(pixeluser).then(c => {}); // itzZa1D - Codes Team.
     });
   }
-}); // itzZa1D - Codes Team.
+});
 
-////كود معلومات البوت
+
 client.on("message", message => {
   if (message.content === prefix + "bot") {
     const bot = new Discord.RichEmbed()
@@ -227,7 +222,7 @@ client.on("message", message => {
       .addField("**Channels** : ", `» ${client.channels.size} `, true)
       .addField("**Users** : ", `» ${client.users.size} `, true)
       .addField("**Bot Name** :  ", `» ${client.user.tag} `, true)
-      .addField("**Bot Owner** :  ", `» <@359541019836022784>`, true) // تعديل اساسي غير الايدي لايدي حسابك
+      .addField("**Bot Owner** :  ", `» Black!#5555 `, true) // تعديل اساسي غير الايدي لايدي حسابك
       .setImage("")
       .setFooter(message.author.username, message.client.avatarURL);
     message.channel.send(bot);
@@ -274,7 +269,6 @@ client.on("message", message => {
 });
 client.on("message", async message => {
   if (message.content.startsWith(prefix + "inf")) {
-    //// وهون الامر طبعا
     let oi = message.mentions.users.first()
       ? message.mentions.users.first().id
       : message.author.id;
