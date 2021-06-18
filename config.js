@@ -1,4 +1,4 @@
 module.exports = {
-  prefix: "-", 
+  prefix: "r/", 
   devs: ["279557901922729984"],
 };
