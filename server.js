@@ -733,188 +733,126 @@ client.on("message", function(message) {
 });
 ///تعديل غير اساسي
 ////كود هيلب
-client.on("message", message => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + "help")) {
-    if (message.author.id == message.guild.ownerID) {
-      message.author
-        .send(
-          `   
-\`الاوامر العامة\` :postbox:
-\`${prefix}bot\` : لعرض معلومات عن البوت 
-\`${prefix}user\` : لعرض معلومات عنك 
-\`${prefix}avt\` :يعرض لك صورت  اي شخص عن طريق الايدي 
-\`${prefix}avatar\` : لعرض صورتك أو صورة الي تمنشنه 
-\`${prefix}color\` : لأختيار لونك في السيرفر 
-\`${prefix}colors\` : غير لونك 
-\`${prefix}inf\` : عدد الدعوات للسيرفر
-\`${prefix}رابط\` : اكتب رابط بالشات يجيك رابط السيرفر خاص
 
-\`الاوامر الإدارية\` :stars:
-\`${prefix}clear\` : لمسح الشات 
-\`${prefix}ban\` : لحظر شخص من السيرفر
-\`${prefix}kick\` : لطرد شخص من السيرفر
-\`${prefix}open\` : لفتح الشات
-\`${prefix}close\` : لقفل الشات 
-\`${prefix}mute\` : لإسكات شخص
-\`${prefix}unmute\` : لـ فك إسكات شخص
-\`${prefix}new\` : فتح التكت
-\`${prefix}closet\` : لحذف روم التكت
-\`${prefix}say\` : البوت يكرر كلامك
-\`${prefix}move\` : لسحب الشخص الى روومك
-\`${prefix}reply\` : لصنع رد تلقائي
-\`${prefix}setLog\` : لتحديد روم السجلات 
-\`${prefix}setby\` : تحديد روم المغادرة
-\`${prefix}setWelcomer <channel name>\` : لتحديد روم الولكم 
-\`${prefix}setMessage\` : لتحديد رسالة الترحيب 
-\`${prefix}setVc\` <channel name> : لتحديد روم الفويس اونلاين 
-\`${prefix}vc off\` : لإغلاق روم الفويس اونلاين
-\`${prefix}ls\` : لإظهار جميع بوتات السيرفر
-\`${prefix}role\` : لاعطاء شخص رتبة
-\`${prefix}role all\` : لـ إعطاء الجميع رتبة معينة
+client.on('message', async message => {
+	if (message.content === prefix + 'help') {
+   
+		let pages = [
+			`
+**Security**
+\`${prefix}settings limitsban\`
+\`${prefix}settings limitskick\` 
+\`${prefix}settings limitsroleD\` 
+\`${prefix}settings limitsroleC\` 
+\`${prefix}settings limitschannelD\` 
+\`${prefix}settings limitstime\`
+\`${prefix}antibots on\` 
+\`${prefix}antibots off\`
+    `,
+			`
+**Public**
 
-\`\`اوامر التقديم\`\` :pencil: 
-\`${prefix}room1\` : لعمل روم التقديمات
-\`${prefix}room2\` : لعمل روم القبول والرفض
-\`لقبول تقديم عضو : \`${prefix}قبول
-مثال: \`\`${prefix}قبول @منشن عضو \`\`
-لرفض عضو : ${prefix}رفض
-مثال: \`\`${prefix}رفض @منشن عضو لست متفاعل بشكل كافِ\`\`
+\`${prefix}bot\` 
+\`${prefix}user\`  
+\`${prefix}avt\` 
+\`${prefix}avatar\` 
+\`${prefix}color\` 
+\`${prefix}colors\` 
+\`${prefix}inf\`
+    `,
+			`
+**Moderation**
 
-  `
-        )
-        .then(() => {
-          message.author.send(`
+\`${prefix}clear\`
+\`${prefix}ban\` 
+\`${prefix}kick\` 
+\`${prefix}open\` 
+\`${prefix}close\` 
+\`${prefix}mute\` 
+\`${prefix}unmute\` 
+\`${prefix}new\`
+\`${prefix}closet\` 
+\`${prefix}say\` 
+\`${prefix}move\` 
+\`${prefix}reply\` 
+\`${prefix}setLog\` 
+\`${prefix}setby\` 
+\`${prefix}setWelcomer <channel name>\` 
+\`${prefix}setMessage\` :
+\`${prefix}setVc\` <channel name> :
+\`${prefix}vc off\` 
+\`${prefix}ls\` 
+\`${prefix}role\` 
+\`${prefix}role all\` 
+\`${prefix}giveaway\`
+    `,
+		`
+**credit card**
+\`${prefix}credits\` 
+\`${prefix}daily\`
+\`${prefix}addcredits\`
+   `,
+			` 
+**music**
+\`${prefix}Play\`
+\`${prefix}Pause\` 
+\`${prefix}Resume\` 
+\`${prefix}stop\` 
+\`${prefix}forceskip\` 
+\`${prefix}Queue\` 
+\`${prefix}skipto\` 
+\`${prefix}Skip\` 
+\`${prefix}Volume\` 
+\`${prefix}np\` 
+\`${prefix}repeat\`
+   `,
+                         `
+**Links**
 
-\`أوامر الكريدت\` :credit_card: 
-\`${prefix}credits\` : لمعرفة رصيدك  
-\`${prefix}daily\` : لأخذ جائزة يومية
-\`يمكن التحويل من شخص لشخص + يزيد الكريدت فقط من امر دايلي\`
-
-\`أوامر الموسيقى \` :notes:
-\`${prefix}Play\` : تشغيل الاغنية او اضافتها للقائمة او اكمال الاغنية [p]
-\`${prefix}Pause\` : ايقاف مؤقت الاغنية
-\`${prefix}Resume\` : اكمال الاغنية 
-\`${prefix}stop\` : لأيقاف الأغنية وخروج البوت من الروم
-\`${prefix}forceskip\` : لتخطي الأغنية بشكل مباشر
-\`${prefix}Queue\` : عرض القائمة 
-\`${prefix}skipto\` : لتخطي الأغنية الى الأغنية القادمة في طابور الموسيقى القادمة
-\`${prefix}Skip\` : تخطي للاغنية التالية 
-\`${prefix}Volume\` : تغيير الصوت [vol] 
-\`${prefix}np\` : عرض مايتم تشغيله الان [np] 
-\`${prefix}repeat\` : تكرار الاغنية 
-
-\`أوامر الحماية\` :closed_lock_with_key:
-\`${prefix}settings limitsban\` : تحدد العدد الي تبيه لو حد بند  البوت يبنده 
-\`${prefix}settings limitskick\` : تحدد العدد الي تبيه لو حد طرد 3 او 4 البوت يبنده 
-\`${prefix}settings limitsroleD\` : تحدد العدد الي تبيه لو حد مسح رول 3 او 4 البوت يبنده 
-\`${prefix}settings limitsroleC\` : تحدد العدد الي تبيه لو حد صنع روم 3 او 4 البوت يبنده 
-\`${prefix}settings limitschannelD\` : تحدد العدد الي تبيه لو حد مسح روم 3 او 4 البوت يبنده 
-\`${prefix}settings limitstime\` : تحديد الوقت الذي من خلالة يتم التبنيد كـ مثال اذا شخص بند 5 في دقيقة البوت يبنده
-\`${prefix}antibots on\` : منع دخول بوتات
-\`${prefix}antibots off\` : السماح للبوتات بالدخول
-\`شرح البوت \` : <https://youtu.be/6B9nrQp02Rk>
-`);
-        })
-        .then(e => {
-          message.react("✅");
-        })
-        .catch(() => {
-          return message.channel
-            .send(
-              "**يجب السماح بأستقبال الرسائل في الخاص ، لأتمكن من ارسال الاوامر لك **"
-            )
-            .then(() => {
-              return message.react("❌");
-            });
-        });
-    } else {
-      message.author
-        .send(
-          `   
-\`الاوامر العامة\` :postbox:
-\`${prefix}bot\` : لعرض معلومات عن البوت 
-\`${prefix}user\` : لعرض معلومات عنك 
-\`${prefix}avt\` :يعرض لك صورت  اي شخص عن طريق الايدي
-\`${prefix}avatar\` : لعرض صورتك أو صورة الي تمنشنه 
-\`${prefix}color\` : لأختيار لونك في السيرفر 
-\`${prefix}colors\` : غير لونك 
-\`${prefix}inf\` : عدد الدعوات للسيرفر
-\`${prefix}رابط\` : اكتب رابط بالشات يجيك رابط السيرفر خاص
-
-\`الاوامر الإدارية\` :stars:
-\`${prefix}clear\` : لمسح الشات 
-\`${prefix}ban\` : لحظر شخص من السيرفر
-\`${prefix}kick\` : لطرد شخص من السيرفر
-\`${prefix}open\` : لفتح الشات
-\`${prefix}close\` : لقفل الشات 
-\`${prefix}mute\` : لإسكات شخص
-\`${prefix}unmute\` : لـ فك إسكات شخص
-\`${prefix}new\` : فتح التكت
-\`${prefix}closet\` : لحذف روم التكت
-\`${prefix}say\` : البوت يكرر كلامك
-\`${prefix}move\` : لسحب الشخص الى روومك
-\`${prefix}reply\` : لصنع رد تلقائي
-\`${prefix}setLog\` : لتحديد روم السجلات 
-\`${prefix}setby\` : تحديد روم المغادرة
-\`${prefix}setWelcomer <channel name>\` : لتحديد روم الولكم 
-\`${prefix}setMessage\` : لتحديد رسالة الترحيب 
-\`${prefix}setVc\` <channel name> : لتحديد روم الفويس اونلاين 
-\`${prefix}vc off\` : لإغلاق روم الفويس اونلاين
-\`${prefix}ls\` : لإظهار جميع بوتات السيرفر
-\`${prefix}role\` : لاعطاء شخص رتبة
-\`${prefix}role all\` : لـ إعطاء الجميع رتبة معينة
-
-\`\`اوامر التقديم\`\` :pencil: 
-\`${prefix}room1\` : لعمل روم التقديمات
-\`${prefix}room2\` : لعمل روم القبول والرفض
-\`${prefix}لقبول تقديم عضو : \`قبول
-مثال: \`\`${prefix}قبول @منشن عضو \`\`
- ${prefix}لرفض عضو : رفض
-مثال: \`\`${prefix}رفض @منشن عضو لست متفاعل بشكل كافِ\`\`
-
-
-
-  `
-        )
-        .then(() => {
-          message.author.send(`
-
-\`أوامر الكريدت\` :credit_card: 
-\`${prefix}credits\` : لمعرفة رصيدك  
-\`${prefix}daily\` : لأخذ جائزة يومية
-\`يمكن التحويل من شخص لشخص + يزيد الكريدت فقط من امر دايلي\`
-
-\`أوامر الموسيقى \` :notes:
-\`${prefix}Play\` : تشغيل الاغنية او اضافتها للقائمة او اكمال الاغنية [p]
-\`${prefix}Pause\` : ايقاف مؤقت الاغنية
-\`${prefix}Resume\` : اكمال الاغنية 
-\`${prefix}stop\` : لأيقاف الأغنية وخروج البوت من الروم
-\`${prefix}forceskip\` : لتخطي الأغنية بشكل مباشر
-\`${prefix}Queue\` : عرض القائمة 
-\`${prefix}skipto\` : لتخطي الأغنية الى الأغنية القادمة في طابور الموسيقى القادمة
-\`${prefix}Skip\` : تخطي للاغنية التالية 
-\`${prefix}Volume\` : تغيير الصوت [vol] 
-\`${prefix}np\` : عرض مايتم تشغيله الان [np] 
-\`${prefix}repeat\` : تكرار الاغنية 
-\`شرح البوت \` : <https://youtu.be/6B9nrQp02Rk>
-
-`);
-        })
-        .then(e => {
-          message.react("✅");
-        })
-        .catch(() => {
-          return message.channel
-            .send(
-              "**يجب السماح بأستقبال الرسائل في الخاص ، لأتمكن من ارسال الاوامر لك **"
-            )
-            .then(() => {
-              return message.react("❌");
-            });
-        });
-    }
-  }
+__ [Support](https://discord.gg/MagzqWnYFS) - [Invite](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot) __
+    `
+		];
+		let page = 1;
+ 
+		let embed = new Discord.MessageEmbed()
+                        .setImage('https://cdn.discordapp.com/attachments/784182278481772564/854688687807529020/New_Project_99AD184.gif')
+			.setColor('#b00c00')
+			.setFooter(`Page ${page} of ${pages.length}`)
+			.setDescription(pages[page - 1]);
+ 
+		message.channel.send(embed).then(msg => {
+			msg.react('◀').then(r => {
+				msg.react('▶');
+ 
+				const backwardsFilter = (reaction, user) =>
+					reaction.emoji.name === '◀' && user.id === message.author.id;
+				const forwardsFilter = (reaction, user) =>
+					reaction.emoji.name === '▶' && user.id === message.author.id;
+ 
+				const backwards = msg.createReactionCollector(backwardsFilter, {
+					time: 2000000
+				});
+				const forwards = msg.createReactionCollector(forwardsFilter, {
+					time: 2000000
+				});
+backwards.on('collect', r => {
+					if (page === 1) return;
+					page--;
+					embed.setDescription(pages[page - 1]);
+					embed.setFooter(`Page ${page} of ${pages.length}`);
+					msg.edit(embed);
+				});
+				forwards.on('collect', r => {
+					if (page === pages.length) return;
+ 
+					page++;
+					embed.setDescription(pages[page - 1]);
+					embed.setFooter(`Page ${page} of ${pages.length}`);
+					msg.edit(embed);
+         });
+			});
+		});
+	}
 });
 
 ////كود قيف اوي
