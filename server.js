@@ -733,12 +733,16 @@ client.on("message", function(message) {
 });
 ///تعديل غير اساسي
 ////كود هيلب
+client.on("message", async message => {
+  if (message.content.startsWith(prefix + "help")) {
+    let help = new Discord.MessageEmbed()
+      .setColor(color)
+      .setAuthor(message.author.username, message.author.displayAvatarURL)
+      .setThumbnail(message.guild.iconURL)
+    
+      .setDescription(`
+ 
 
-client.on('message', async message => {
-	if (message.content === prefix + 'help') {
-   
-		let pages = [
-			`
 **Security**
 \`${prefix}settings limitsban\`
 \`${prefix}settings limitskick\` 
@@ -811,49 +815,10 @@ client.on('message', async message => {
 
 __ [Support](https://discord.gg/progresshome) - [Invite](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot) __
     `
-		];
-		let page = 1;
- 
-		let embed = new Discord.MessageEmbed()
-                        .setImage('')
-			.setColor('#b00c00')
-			.setFooter(`Page ${page} of ${pages.length}`)
-			.setDescription(pages[page - 1]);
- 
-		message.channel.send(embed).then(msg => {
-			msg.react('◀').then(r => {
-				msg.react('▶');
- 
-				const backwardsFilter = (reaction, user) =>
-					reaction.emoji.name === '◀' && user.id === message.author.id;
-				const forwardsFilter = (reaction, user) =>
-					reaction.emoji.name === '▶' && user.id === message.author.id;
- 
-				const backwards = msg.createReactionCollector(backwardsFilter, {
-					time: 2000000
-				});
-				const forwards = msg.createReactionCollector(forwardsFilter, {
-					time: 2000000
-				});
-backwards.on('collect', r => {
-					if (page === 1) return;
-					page--;
-					embed.setDescription(pages[page - 1]);
-					embed.setFooter(`Page ${page} of ${pages.length}`);
-					msg.edit(embed);
-				});
-				forwards.on('collect', r => {
-					if (page === pages.length) return;
- 
-					page++;
-					embed.setDescription(pages[page - 1]);
-					embed.setFooter(`Page ${page} of ${pages.length}`);
-					msg.edit(embed);
-         });
-			});
-		});
-	}
+    message.channel.send(help);
+  }
 });
+
 
 ////كود قيف اوي
 client.on("message", async message => {
