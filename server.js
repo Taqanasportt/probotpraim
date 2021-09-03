@@ -268,7 +268,7 @@ client.on("message", message => {
   }
 });
 client.on("message", async message => {
-  if (message.content.startsWith(prefix + "inf")) {
+  if (message.content.startsWith(prefix + "info")) {
     let oi = message.mentions.users.first()
       ? message.mentions.users.first().id
       : message.author.id;
@@ -380,7 +380,7 @@ client.on("message", message => {
   }
 });
 client.on("message", message => {
-  if (message.content.split(" ")[0] === prefix + "avatar") {
+  if (message.content.split(" ")[0] === prefix + "avt") {
     if (message.author.bot || message.channel.type == "dm") return;
     var args = message.content.split(" ")[1];
     var avt = args || message.author.id;
@@ -762,7 +762,7 @@ client.on("message", async message => {
 \`${prefix}avatar\` 
 \`${prefix}color\` 
 \`${prefix}colors\` 
-\`${prefix}inf\`
+\`${prefix}info\`
     `,
 			`
 **Moderation**
