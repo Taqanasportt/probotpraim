@@ -384,15 +384,7 @@ client.on("message", message => {
 /////////
 client.on("message", async message => {
   if (message.content.startsWith(prefix + "help")) {
-    if (cooldown.has(message.author.id)) {
-      return message.channel.send(`**⏱ | You have to wait 5 seconds**`).then(m => {
-        m.delete({ timeout: cdtime * 600 });
-      });
-    }
-    cooldown.add(message.author.id);
-    setTimeout(() => {
-      cooldown.delete(message.author.id);
-    }, cdtime * 1000);	  
+
     let help = new Discord.MessageEmbed()
       .setColor(`#b00c00`)
       .setImage(`https://media.discordapp.net/attachments/784182278481772564/874065156051730432/20210809_020100.gif`)
