@@ -222,7 +222,7 @@ client.on("message", message => {
       .addField("**Channels** : ", `» ${client.channels.size} `, true)
       .addField("**Users** : ", `» ${client.users.size} `, true)
       .addField("**Bot Name** :  ", `» ${client.user.tag} `, true)
-      .addField("**Bot Owner** :  ", `» Black!#5555 `, true) // تعديل اساسي غير الايدي لايدي حسابك
+      .addField("**Bot Owner** :  ", `» <@701546840063082601> `, true) // تعديل اساسي غير الايدي لايدي حسابك
       .setImage("")
       .setFooter(message.author.username, message.client.avatarURL);
     message.channel.send(bot);
@@ -380,7 +380,7 @@ client.on("message", message => {
   }
 });
 client.on("message", message => {
-  if (message.content.split(" ")[0] === prefix + "avt") {
+  if (message.content.split(" ")[0] === prefix + "avatar") {
     if (message.author.bot || message.channel.type == "dm") return;
     var args = message.content.split(" ")[1];
     var avt = args || message.author.id;
@@ -809,13 +809,13 @@ client.on('message', async message => {
                          `
 **Links**
 
-__ [Support](https://discord.gg/MagzqWnYFS) - [Invite](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot) __
+__ [Support](https://discord.gg/progresshome) - [Invite](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot) __
     `
 		];
 		let page = 1;
  
 		let embed = new Discord.MessageEmbed()
-                        .setImage('https://cdn.discordapp.com/attachments/784182278481772564/854688687807529020/New_Project_99AD184.gif')
+                        .setImage('')
 			.setColor('#b00c00')
 			.setFooter(`Page ${page} of ${pages.length}`)
 			.setDescription(pages[page - 1]);
