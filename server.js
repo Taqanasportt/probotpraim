@@ -37,7 +37,7 @@ const hastebins = require("hastebin-gen");
 const getYoutubeID = require("get-youtube-id");
 const yt_api_key = "AIzaSyAXaeBh837k38o_lwSADet8UTO7X21DGsY"; ///تعديل اساسي سوي اي بي اي جديد
 const pretty = require("pretty-ms");
-client.login('');
+client.login('ODA1NDc2NTY3ODkwNTI2MjUw.YBbcgg._hhcGDQyqVNYwv7_IH5kHqpivio');
 const queue = new Map();
 var table = require("table").table;
 const Discord = require("discord.js");
