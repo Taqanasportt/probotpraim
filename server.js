@@ -166,6 +166,62 @@ client.on("message", async message => {
   }
 });
 
+
+///////
+
+client.on("message", async message => {
+  if (message.content.startsWith(prefix + "help")) {
+    if (cooldown.has(message.author.id)) {
+      return message.channel.send(`**⏱ | You have to wait 5 seconds**`).then(m => {
+        m.delete({ timeout: cdtime * 600 });
+      });
+    }
+    cooldown.add(message.author.id);
+    setTimeout(() => {
+      cooldown.delete(message.author.id);
+    }, cdtime * 1000);	  
+    let help = new Discord.RichEmbed()
+      .setColor(`#b00c00`)
+      .setImage(`https://media.discordapp.net/attachments/784182278481772564/874065156051730432/20210809_020100.gif`)
+      .setDescription(`
+**__ Help Commands __**
+
+[Invite Rolex](https://discord.com/api/oauth2/authorize?client_id=819208032528498799&permissions=8&scope=bot) - [Support Server](https://discord.gg/JZbQ56Pecj) - [Vote Rolex](https://top.gg/bot/819208032528498799)
+
+
+ 🌍**»__ Public Commands __ **
+ 
+\`${prefix}se - ${prefix}vote\`
+\`${prefix}avatar - ${prefix}day\`
+\`${prefix}uptime - ${prefix}ping\`
+\`${prefix}about - ${prefix}weather\`
+\`${prefix}listbots - ${prefix}roles\`
+\`${prefix}userRole - ${prefix}support\`
+\`${prefix}invite - ${prefix}listEmoji\`
+\`${prefix}report - ${prefix}ninvites\` 
+\`${prefix}perms - ${prefix}serverinfo\`
+\`${prefix}userinfo - ${prefix}server avatar\`
+\`${prefix}covid all - ${prefix}covid\` : **[Country]**
+
+⚡**»__ Moderation __ **
+
+\`${prefix}hide - ${prefix}show\`
+\`${prefix}ban - ${prefix}unban \`
+\`${prefix}move - ${prefix}embed\`
+\`${prefix}kick - ${prefix}vkick\`
+\`${prefix}mute - ${prefix}unmute\`
+\`${prefix}lock - ${prefix}unlock\`
+\`${prefix}clear - ${prefix}slowmode\`
+\`${prefix}lockall - ${prefix}unlockall\`
+\`${prefix}ENrules - ${prefix}KRrules - ${prefix}ARrules\`
+\`${prefix}warn - ${prefix}warning - ${prefix}removewarn\`
+    
+      `);
+    message.channel.send(help);
+  }
+});
+///////
+
 client.on("message", message => {
   
   if (message.content.startsWith(prefix + "user")) {
