@@ -438,20 +438,7 @@ client.on("message", message => {
 
 
 /////////
-code help v12
 
-client.on("message", message => {
-      if  (message.content === prefix + "help") {
-       const embed = new Discord.MessageEmbed()
-                 .setColor("#00FF00")
-                 .setDescription(
-Commands
-
-)
-       message.author.send(embed)
-
-       } 
-      });
 ////
 client.on("message", message => {
   if (message.content.split(" ")[0] === prefix + "avt") {
