@@ -382,51 +382,20 @@ client.on("message", message => {
 
 
 /////////
+code help v12
+
 client.on("message", message => {
-  if (message.content.startsWith(prefix + "help")) {
+      if  (message.content === prefix + "help") {
+       const embed = new Discord.MessageEmbed()
+                 .setColor("#00FF00")
+                 .setDescription(
+Commands
 
-    let help = new Discord.MessageEmbed()
-      .setColor(`#b00c00`)
-      .setImage(`https://media.discordapp.net/attachments/784182278481772564/874065156051730432/20210809_020100.gif`)
-      .setDescription(`
-**__ Help Commands __**
+)
+       message.author.send(embed)
 
-[Invite Rolex](https://discord.com/api/oauth2/authorize?client_id=819208032528498799&permissions=8&scope=bot) - [Support Server](https://discord.gg/JZbQ56Pecj) - [Vote Rolex](https://top.gg/bot/819208032528498799)
-
-
- 🌍**»__ Public Commands __ **
- 
-\`${prefix}se - ${prefix}vote\`
-\`${prefix}avatar - ${prefix}day\`
-\`${prefix}uptime - ${prefix}ping\`
-\`${prefix}about - ${prefix}weather\`
-\`${prefix}listbots - ${prefix}roles\`
-\`${prefix}userRole - ${prefix}support\`
-\`${prefix}invite - ${prefix}listEmoji\`
-\`${prefix}report - ${prefix}ninvites\` 
-\`${prefix}perms - ${prefix}serverinfo\`
-\`${prefix}userinfo - ${prefix}server avatar\`
-\`${prefix}covid all - ${prefix}covid\` : **[Country]**
-
-⚡**»__ Moderation __ **
-
-\`${prefix}hide - ${prefix}show\`
-\`${prefix}ban - ${prefix}unban \`
-\`${prefix}move - ${prefix}embed\`
-\`${prefix}kick - ${prefix}vkick\`
-\`${prefix}mute - ${prefix}unmute\`
-\`${prefix}lock - ${prefix}unlock\`
-\`${prefix}clear - ${prefix}slowmode\`
-\`${prefix}lockall - ${prefix}unlockall\`
-\`${prefix}ENrules - ${prefix}KRrules - ${prefix}ARrules\`
-\`${prefix}warn - ${prefix}warning - ${prefix}removewarn\`
-    
-      `);
-    message.channel.send(help);
-  }
-});
-
-
+       } 
+      });
 ////
 client.on("message", message => {
   if (message.content.split(" ")[0] === prefix + "avt") {
