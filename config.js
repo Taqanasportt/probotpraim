@@ -1,4 +1,4 @@
 module.exports = {
-  prefix: ">", 
+  prefix: "#", 
   devs: ["701546840063082601"],
 };
